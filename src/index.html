@@ -4,7 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+    </style>
     <title>Excuse generator</title>
   </head>
   <body onload="changeExcuse()">
@@ -12,6 +20,32 @@
       <h1>OMG! You will not believe me but...</h1>
       <h1 id="excuse">My dog ate my homework</h1>
     </div>
-    <script src="app.js"></script>
+    <script>
+      let who = ["The dog", "My grandma", "His turtle", "My bird"];
+      let action = ["ate", "peed", "crushed", "broke"];
+      let what = ["my homework", "the keys", "the car"];
+      let when = [
+        "before the class",
+        "right on time",
+        "when I finished",
+        "during my lunch",
+        "while I was praying"
+      ];
+
+      function randomExcuse() {
+        let whoIndex = Math.floor(Math.random() * who.length);
+        let actionIndex = Math.floor(Math.random() * action.length);
+        let whatIndex = Math.floor(Math.random() * what.length);
+        let whenIndex = Math.floor(Math.random() * when.length);
+
+        let excuse = `${who[whoIndex]} ${action[actionIndex]} ${what[whatIndex]} ${when[whenIndex]}`;
+        return excuse;
+      }
+
+      function changeExcuse() {
+        let excuseElement = document.getElementById("excuse");
+        excuseElement.innerHTML = randomExcuse();
+      }
+    </script>
   </body>
 </html>
